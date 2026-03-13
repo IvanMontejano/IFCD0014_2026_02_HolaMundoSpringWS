@@ -26,6 +26,7 @@ public class MainController {
 
         endpoints.put("GET /sumar", "/sumar?s1=5&s2=3");
         endpoints.put("GET /restar", "/restar?s1=5&s2=3");
+        endpoints.put("GET /multi", "/multi?s1=5&s2=3");
         endpoints.put("GET /mutar", "/mutar?nombre=ivan&especie=humano");
 
         return endpoints;
@@ -43,6 +44,14 @@ public class MainController {
     public Resultado restar(@RequestParam int s1, @RequestParam int s2, Model model) {
 
         int resultado = calculadoraService.restar(s1, s2);
+
+        return new Resultado(resultado);
+    }
+
+    @GetMapping("/multi")
+    public Resultado multi(@RequestParam int s1, @RequestParam int s2, Model model) {
+
+        int resultado = calculadoraService.multiplicar(s1, s2);
 
         return new Resultado(resultado);
     }
